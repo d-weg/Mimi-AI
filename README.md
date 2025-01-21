@@ -1,2 +1,2 @@
-# DeepNodeAi
-DeepNodeAi base repo
+# Mimi-Ai
+Mimi-Ai base repo
