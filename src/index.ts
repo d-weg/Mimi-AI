@@ -1,5 +1,4 @@
-import { app } from "./app";
-import env from "./env";
+import { api } from "@api";
+import config from "@config";
 
-if (env.IS_LOCAL) app.listen({ port: env.PORT || 3000 });
-else app.listen({ host: "0.0.0.0", port: env.PORT });
+api.listen({ host: config.api.BASE_URL, port: config.api.PORT });

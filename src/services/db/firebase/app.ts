@@ -1,7 +1,7 @@
 import { initializeApp, cert, ServiceAccount } from "firebase-admin/app";
-import env from "../../../env";
+import config from "@config";
 
-const credential = env.FIREBASE_CERTIFICATE as ServiceAccount;
+const credential = config.firebase.CERTIFICATE as ServiceAccount;
 
 export const app = initializeApp({
   credential: cert(credential),

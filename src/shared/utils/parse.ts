@@ -1,6 +1,5 @@
 import { VectorValue } from "@google-cloud/firestore";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
-import { ObjectId } from "mongodb";
 import { z, ZodObject, ZodRawShape } from "zod";
 import { ObjectDefinition, s } from "ajv-ts";
 import { CustomObjectSchema } from "./types";
@@ -88,15 +87,7 @@ export const parseBoolean = (value: unknown) => {
   return true;
 };
 
-export const idSchema = z.preprocess((value) => {
-  if (value instanceof ObjectId) {
-    return value.toString();
-  }
-
-  if (typeof value === "string") return new ObjectId(value);
-
-  if (!value) return new ObjectId();
-}, z.instanceof(ObjectId).or(z.coerce.string()).optional());
+export const idSchema = z.string().uuid();
 
 export const dateSchema = z
   .preprocess((value) => {
@@ -127,3 +118,7 @@ export const vectorSchema = z
   .transform((value: number[]) => {
     return FieldValue.vector(value);
   });
+
+export const getHost = (local?: boolean) => {
+  return local ? "localhost" : "0.0.0.0";
+};

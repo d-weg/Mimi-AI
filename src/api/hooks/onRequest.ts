@@ -1,8 +1,8 @@
 import { DoneFuncWithErrOrRes, FastifyReply } from "fastify";
 
-import env from "../env";
+import config from "@config";
 
-import { CustomFastifyRequest } from "../shared/types/Request";
+import { CustomFastifyRequest } from "../../shared/types/Request";
 
 export const verifyAuthAndRole = (
   request: CustomFastifyRequest,
@@ -12,7 +12,7 @@ export const verifyAuthAndRole = (
   const { headers, routeOptions } = request;
   const { authorization, "x-api-key": xApiKey } = headers;
 
-  if (xApiKey !== env.API_KEY) {
+  if (xApiKey !== config.api.API_KEY) {
     return reply.code(403).send({ error: "Invalid API KEY" });
   }
 
@@ -27,6 +27,4 @@ export const verifyAuthAndRole = (
 export const userValidationMiddleware = async (
   request: CustomFastifyRequest,
   reply: FastifyReply
-) => {
-  const { user } = request.context;
-};
+) => {};
