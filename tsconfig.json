@@ -12,9 +12,14 @@
       "skipLibCheck": true,
       "paths": {
         "@*": ["src/*"],
-        "@redis": ["src/services/cache/redis"]
+        "@redis": ["src/services/cache/redis"],          
+        "@redis/*": ["src/services/cache/redis/*"],          
       }
     },
     "lib": ["es2022"],
-    "exclude": ["./infra"]
+    "exclude": ["./infra"],
+    "ts-node": {
+    // Do not forget to `npm i -D tsconfig-paths`
+    "require": ["tsconfig-paths/register"]
+  }
 }

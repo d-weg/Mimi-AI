@@ -1,4 +1,4 @@
-import { getHost, parseBoolean, parseJSON } from "@/shared";
+import { getHost, parseBoolean, parseJSON } from "@shared";
 import { ServiceAccount } from "@shared/types";
 
 interface Env {
@@ -22,7 +22,7 @@ const config = {
     API_KEY: env.API_KEY,
   },
   redis: {
-    HOST: env.REDIS_HOST || "redis",
+    HOST: env.REDIS_HOST || "localhost",
     PORT: parseInt(env.REDIS_PORT as never) || 6379,
   },
   firebase: {

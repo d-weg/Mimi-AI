@@ -26,7 +26,6 @@ class EventBus {
     if (this.isInitialized) return;
 
     try {
-      await subscriber.connect();
       const handleMessage = this.handleMessage.bind(this);
       const handleError = this.handleError.bind(this);
 

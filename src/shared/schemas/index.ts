@@ -4,7 +4,6 @@ import { dateSchema, idSchema } from "../utils";
 export const BaseEntity = (entityName: string) =>
   z
     .object({
-      _id: idSchema,
       createdAt: dateSchema,
       updatedAt: dateSchema.optional(),
       createdBy: z.string().default("system"),

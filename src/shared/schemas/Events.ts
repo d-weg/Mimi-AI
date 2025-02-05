@@ -2,6 +2,7 @@ import { Events } from "@shared/types/Events";
 import { z } from "zod";
 
 const ConversationStartSchema = z.object({
+  agentId: z.string(),
   conversationId: z.string(),
   userId: z.string(),
   timestamp: z.number(),

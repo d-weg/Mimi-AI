@@ -3,10 +3,10 @@ import helmet from "@fastify/helmet";
 import swagger from "@fastify/swagger";
 import swaggerUI from "@fastify/swagger-ui";
 import cors from "@fastify/cors";
+import webSockets from "@fastify/websocket";
+import * as hooks from "@api/hooks/onRequest";
 
-import * as hooks from "./hooks/onRequest";
-
-import * as Routers from "./features";
+import * as Routers from "@api/features";
 import config from "@config";
 
 export const api = fastify({
@@ -15,6 +15,7 @@ export const api = fastify({
 });
 
 export const setup = async () => {
+  api.register(webSockets);
   api.register(cors);
   api.register(helmet);
   api.addHook("onRequest", hooks.verifyAuthAndRole);
